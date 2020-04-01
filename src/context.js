@@ -32,16 +32,29 @@ class RoomProvider extends Component {
     
   }
   
-  // getData
-  
+  //gets data of room
+  getRoom = slug => {
+    let tempRooms = [...this.state.rooms]
+    const room = tempRooms.find(room => room.slug === slug)
+    return room
+  }
+
   componentDidMount() {
     // this.getData
-    let rooms = this.formatData(items)
+    let rooms = this.formatData(items);
+    let featuredRooms = rooms.filter(room => room.featured === true);
+    this.setState({
+      rooms, 
+      featuredRooms, 
+      sortedRooms: rooms, 
+      loading: false 
+    })
   }
 
   render() {
     return (
-      <RoomContext.Provider value={{...this.state}}>
+      <RoomContext.Provider value={{...this.state, 
+      getRoom: this.getRoom }}>
         {this.props.children}
       </RoomContext.Provider>
     )

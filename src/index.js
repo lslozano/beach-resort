@@ -10,7 +10,7 @@ ReactDOM.render(
   <RoomProvider>
     <Router>
       <App />
-    </Router>,
+    </Router>
   </RoomProvider>,
   document.getElementById('root')
 );
